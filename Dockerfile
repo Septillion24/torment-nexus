@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y sudo
 
 # Install dependencies
 COPY --chown=$MAMBA_USER:$MAMBA_USER requirements_conda.txt /ember/
-RUN micromamba install -y -n base --channel conda-forge --file requirements_conda.txt && \
+RUN micromamba install -y -n base --channel conda-forge python=3.6 --file requirements_conda.txt && \
     micromamba clean --all --yes
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
