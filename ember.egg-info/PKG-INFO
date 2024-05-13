@@ -2,10 +2,7 @@ Metadata-Version: 2.1
 Name: ember
 Version: 0.1.0
 Summary: Endgame Malware BEnchmark for Research
-Home-page: UNKNOWN
 Author-email: proth@endgame.com
-License: UNKNOWN
-Platform: UNKNOWN
 License-File: LICENSE.txt
 
 <img src="resources/logo.png" align="right" width="250px" height="250px">
@@ -138,5 +135,3 @@ H. Anderson and P. Roth, "EMBER: An Open Dataset for Training Static PE Malware 
   adsurl = {http://adsabs.harvard.edu/abs/2018arXiv180404637A},
 }
 ```
-
-

@@ -550,7 +550,14 @@ class PEFeatureExtractor(object):
 
     def process_raw_features(self, raw_obj):
         feature_vectors = [fe.process_raw_features(raw_obj[fe.name]) for fe in self.features]
+        self.write_dict_to_file(feature_vectors, '/workspaces/torment-nexus/resources/process_raw_features.txt')
         return np.hstack(feature_vectors).astype(np.float32)
 
     def feature_vector(self, bytez):
         return self.process_raw_features(self.raw_features(bytez))
+
+
+    def write_dict_to_file(feature_vectors, filename='output.txt'):
+        with open(filename, 'w') as file:
+            for key, value in feature_vectors.items():
+                file.write(f'{key}: {value}\n')

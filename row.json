@@ -1,0 +1,105 @@
+{
+    "sha256": "d2fc10ff55270f0a376cfad798df25f560a57a9629969453cb3b03170ae2df34",
+    "md5": "6cccd77ff23d158a3af697b3602aa90b",
+    "appeared": "2018-05",
+    "label": 0,
+    "avclass": "",
+    "histogram": [
+        28694, 16767, 16216, 16393, 16633, 16065, 16180, 16515, 16755, 16235, 16296, 16303, 16179, 16421, 16107, 16144, 16171, 16038, 16001, 16092, 16260, 16137, 16019, 15886, 16164, 16136, 15977,
+        15976, 15997, 16066, 16052, 16200, 17427, 16078, 16240, 16038, 16331, 16174, 16311, 16197, 16227, 16085, 16242, 16120, 16029, 15979, 16190, 16375, 16206, 16047, 16183, 16679, 16200, 16045,
+        16278, 15926, 16018, 15998, 16100, 15925, 16008, 15988, 16042, 15937, 17590, 16317, 15948, 16655, 16463, 16606, 16070, 15770, 16187, 16256, 16006, 15975, 16068, 16134, 16227, 15939, 16331,
+        16172, 16033, 16477, 16049, 16295, 16213, 16196, 16032, 16179, 16193, 16036, 16103, 16224, 16181, 16317, 16255, 16532, 16164, 16266, 16635, 16611, 16379, 16188, 16293, 16347, 16402, 16082,
+        16575, 16191, 16366, 16390, 16250, 16150, 16497, 16483, 17359, 16718, 16272, 16216, 16415, 16239, 16158, 16280, 16272, 16127, 16003, 16099, 16618, 16163, 16093, 16530, 16393, 16344, 15827,
+        15980, 16219, 16717, 16256, 18058, 16239, 16419, 16052, 15896, 16190, 15823, 15968, 15959, 16138, 16199, 16070, 15897, 15997, 16068, 16054, 16347, 16088, 16070, 16164, 16118, 15840, 16087,
+        15853, 15942, 16274, 15986, 15820, 16013, 16002, 15978, 16010, 16038, 15969, 16015, 15999, 16081, 16233, 15960, 16125, 15996, 16061, 16138, 16192, 16184, 16201, 16230, 16244, 15929, 16054,
+        16100, 15973, 16356, 16703, 16000, 16189, 16551, 16508, 16024, 16295, 16176, 15961, 15867, 16133, 15955, 16253, 15914, 16298, 16138, 16183, 16055, 16070, 15972, 16357, 15969, 16012, 16104,
+        16168, 16166, 16018, 16171, 16357, 16208, 16021, 16254, 16509, 16022, 15919, 16110, 15933, 15872, 15969, 16407, 17315, 16069, 16096, 16364, 16278, 16017, 16010, 15976, 16296, 16131, 16017,
+        16137, 16198, 15884, 16204, 16135, 16610, 16048, 16098, 16059, 16279, 15977, 16173, 19826
+    ],
+    "byteentropy": [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3732, 58, 191, 75, 273, 51, 968, 478, 102, 65,
+        14, 9, 37, 15, 13, 63, 2770, 28, 472, 74, 334, 179, 1445, 767, 6, 4, 3, 8, 4, 7, 34, 9, 2570, 26, 637, 178, 189, 142, 1228, 620, 12, 16, 6, 22, 37, 6, 270, 185, 3256, 89, 233, 203, 308, 120,
+        322, 186, 248, 150, 52, 38, 234, 64, 266, 375, 3790, 70, 703, 417, 642, 326, 2051, 1231, 373, 382, 73, 159, 479, 103, 423, 1066, 218, 23, 366, 253, 66, 38, 493, 304, 34, 37, 47, 34, 25, 35,
+        33, 42, 3026, 311, 415, 388, 1173, 977, 500, 685, 1880, 155, 147, 285, 954, 557, 839, 2044, 11677, 1618, 2354, 2185, 4543, 4383, 2964, 3435, 7328, 820, 936, 1366, 3963, 2498, 3843, 7527,
+        515787, 511986, 514559, 511281, 512737, 511703, 513246, 515240, 513480, 512540, 510409, 513916, 512092, 512772, 511900, 512688
+    ],
+    "strings": {
+        "numstrings": 19704,
+        "avlength": 5.892509135200974,
+        "printabledist": [
+            1738, 1117, 1211, 1129, 1127, 1151, 1106, 1161, 1109, 1131, 1175, 1129, 1183, 1146, 1180, 1252, 1190, 1145, 1168, 1204, 1092, 1189, 1119, 1120, 1140, 1114, 1113, 1089, 1170, 1152, 1188,
+            1204, 1142, 1222, 1098, 1240, 1139, 1242, 1199, 1138, 1099, 1217, 1131, 1206, 1244, 1152, 1226, 1190, 1244, 1153, 1149, 1275, 1123, 1147, 1122, 1207, 1118, 1121, 1146, 1113, 1124, 1178,
+            1231, 1202, 1128, 1490, 1178, 1244, 1288, 1827, 1263, 1208, 1237, 1417, 1167, 1134, 1445, 1257, 1394, 1479, 1278, 1157, 1465, 1535, 1651, 1291, 1240, 1222, 1171, 1206, 1161, 1089, 1155,
+            1096, 1099, 1154
+        ],
+        "printables": 116106,
+        "entropy": 6.5770122686376356,
+        "paths": 0,
+        "urls": 2,
+        "registry": 0,
+        "MZ": 46
+    },
+    "general": { "size": 4161979, "vsize": 86016, "has_debug": 0, "exports": 0, "imports": 8, "has_relocations": 0, "has_resources": 1, "has_signature": 0, "has_tls": 1, "symbols": 0 },
+    "header": {
+        "coff": {
+            "timestamp": 708992537,
+            "machine": "I386",
+            "characteristics": ["BYTES_REVERSED_LO", "RELOCS_STRIPPED", "EXECUTABLE_IMAGE", "CHARA_32BIT_MACHINE", "LINE_NUMS_STRIPPED", "BYTES_REVERSED_HI", "LOCAL_SYMS_STRIPPED"]
+        },
+        "optional": {
+            "subsystem": "WINDOWS_GUI",
+            "dll_characteristics": ["DYNAMIC_BASE", "NX_COMPAT", "TERMINAL_SERVER_AWARE"],
+            "magic": "PE32",
+            "major_image_version": 6,
+            "minor_image_version": 0,
+            "major_linker_version": 2,
+            "minor_linker_version": 25,
+            "major_operating_system_version": 1,
+            "minor_operating_system_version": 0,
+            "major_subsystem_version": 4,
+            "minor_subsystem_version": 0,
+            "sizeof_code": 41472,
+            "sizeof_headers": 1024,
+            "sizeof_heap_commit": 4096
+        }
+    },
+    "section": {
+        "entry": "CODE",
+        "sections": [
+            { "name": "CODE", "size": 41472, "entropy": 6.6478539367964, "vsize": 41424, "props": ["CNT_CODE", "MEM_EXECUTE", "MEM_READ"] },
+            { "name": "DATA", "size": 1024, "entropy": 4.102852782594232, "vsize": 592, "props": ["CNT_INITIALIZED_DATA", "MEM_READ", "MEM_WRITE"] },
+            { "name": "BSS", "size": 0, "entropy": -0.0, "vsize": 3732, "props": ["MEM_READ", "MEM_WRITE"] },
+            { "name": ".idata", "size": 2560, "entropy": 4.640998331421412, "vsize": 2428, "props": ["CNT_INITIALIZED_DATA", "MEM_READ", "MEM_WRITE"] },
+            { "name": ".tls", "size": 0, "entropy": -0.0, "vsize": 8, "props": ["MEM_READ", "MEM_WRITE"] },
+            { "name": ".rdata", "size": 512, "entropy": 2.0825518169307426, "vsize": 24, "props": ["CNT_INITIALIZED_DATA", "MEM_SHARED", "MEM_READ"] },
+            { "name": ".reloc", "size": 0, "entropy": -0.0, "vsize": 2332, "props": ["CNT_INITIALIZED_DATA", "MEM_SHARED", "MEM_READ"] },
+            { "name": ".rsrc", "size": 11264, "entropy": 4.588289874486134, "vsize": 11264, "props": ["CNT_INITIALIZED_DATA", "MEM_SHARED", "MEM_READ"] }
+        ]
+    },
+    "imports": {
+        "kernel32.dll": ["DeleteCriticalSection", "WriteFile"],
+        "user32.dll": ["MessageBoxA", "TranslateMessage"],
+        "oleaut32.dll": ["VariantChangeTypeEx"],
+        "advapi32.dll": ["RegQueryValueExA", "AdjustTokenPrivileges"],
+        "comctl32.dll": ["InitCommonControls"]
+    },
+    "exports": [],
+    "datadirectories": [
+        { "name": "EXPORT_TABLE", "size": 0, "virtual_address": 0 },
+        { "name": "IMPORT_TABLE", "size": 2428, "virtual_address": 57344 },
+        { "name": "RESOURCE_TABLE", "size": 11264, "virtual_address": 73728 },
+        { "name": "EXCEPTION_TABLE", "size": 0, "virtual_address": 0 },
+        { "name": "CERTIFICATE_TABLE", "size": 0, "virtual_address": 0 },
+        { "name": "BASE_RELOCATION_TABLE", "size": 0, "virtual_address": 0 },
+        { "name": "DEBUG", "size": 0, "virtual_address": 0 },
+        { "name": "ARCHITECTURE", "size": 0, "virtual_address": 0 },
+        { "name": "GLOBAL_PTR", "size": 0, "virtual_address": 0 },
+        { "name": "TLS_TABLE", "size": 24, "virtual_address": 65536 },
+        { "name": "LOAD_CONFIG_TABLE", "size": 0, "virtual_address": 0 },
+        { "name": "BOUND_IMPORT", "size": 0, "virtual_address": 0 },
+        { "name": "IAT", "size": 0, "virtual_address": 0 },
+        { "name": "DELAY_IMPORT_DESCRIPTOR", "size": 0, "virtual_address": 0 },
+        { "name": "CLR_RUNTIME_HEADER", "size": 0, "virtual_address": 0 }
+    ]
+}
