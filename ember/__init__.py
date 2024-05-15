@@ -27,8 +27,9 @@ def vectorize(irow, raw_features_string, X_path, y_path, extractor, nrows):
     """
     Vectorize a single sample of raw features and write to a large numpy file
     """
+
     raw_features = json.loads(raw_features_string)
-    print(raw_features_string)
+    # feature_names_set.update(raw_features.keys())
     feature_vector = extractor.process_raw_features(raw_features)
 
     y = np.memmap(y_path, dtype=np.float32, mode="r+", shape=nrows)
@@ -36,12 +37,14 @@ def vectorize(irow, raw_features_string, X_path, y_path, extractor, nrows):
 
     X = np.memmap(X_path, dtype=np.float32, mode="r+", shape=(nrows, extractor.dim))
     X[irow] = feature_vector
+            
 
 
 def vectorize_unpack(args):
     """
     Pass through function for unpacking vectorize arguments
     """
+    print(args)
     return vectorize(*args)
 
 
