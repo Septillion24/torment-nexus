@@ -97,7 +97,7 @@ class ByteEntropyHistogram(FeatureType):
         return Hbin, c
 
     def raw_features(self, bytez, lief_binary):
-        output = np.zeros((16, 16), dtype=np.int)
+        output = np.zeros((16, 16), dtype=int)
         a = np.frombuffer(bytez, dtype=np.uint8)
         if a.shape[0] < self.window:
             Hbin, c = self._entropy_bin_counts(a)
@@ -189,7 +189,7 @@ class SectionInfo(FeatureType):
         section_entropy_hashed = FeatureHasher(50, input_type="pair").transform([section_entropy]).toarray()[0]
         section_vsize = [(s['name'], s['vsize']) for s in sections]
         section_vsize_hashed = FeatureHasher(50, input_type="pair").transform([section_vsize]).toarray()[0]
-        entry_name_hashed = FeatureHasher(50, input_type="string").transform([raw_obj['entry']]).toarray()[0]
+        entry_name_hashed = FeatureHasher(50, input_type="string").transform([[raw_obj['entry']]]).toarray()[0]
         characteristics = [p for s in sections for p in s['props'] if s['name'] == raw_obj['entry']]
         characteristics_hashed = FeatureHasher(50, input_type="string").transform([characteristics]).toarray()[0]
 
@@ -534,13 +534,13 @@ class PEFeatureExtractor(object):
         self.dim = sum([fe.dim for fe in self.features])
 
     def raw_features(self, bytez):
-        lief_errors = (lief.bad_format, lief.bad_file, lief.pe_error, lief.parser_error, lief.read_out_of_bound,
-                       RuntimeError)
+        # lief_errors = (lief.bad_format, lief.bad_file, lief.pe_error, lief.parser_error, lief.read_out_of_bound,
+        #                RuntimeError)
         try:
             lief_binary = lief.PE.parse(list(bytez))
-        except lief_errors as e:
-            print("lief error: ", str(e))
-            lief_binary = None
+        # except lief_errors as e:
+        #     print("lief error: ", str(e))
+        #     lief_binary = None
         except Exception:  # everything else (KeyboardInterrupt, SystemExit, ValueError):
             raise
 

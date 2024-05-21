@@ -2,10 +2,7 @@ Metadata-Version: 2.1
 Name: ember
 Version: 0.1.0
 Summary: Endgame Malware BEnchmark for Research
-Home-page: UNKNOWN
 Author-email: proth@endgame.com
-License: UNKNOWN
-Platform: UNKNOWN
 License-File: LICENSE.txt
 
 # Torment Nexus
@@ -17,5 +14,3 @@ License-File: LICENSE.txt
 - Open "init-vectorized-features.ipynb" and run all cells to initialize everything including python dependencies (30 mns)
 - "classify-binaries.ipynb" will run Ember as intended, classifying a binary and spitting out a float for what ember thinks about it (4 mns)
 - "explain-model.ipynb" will make some graphs for the SHAP evaluation of the model (4-6 mns)
-
-
