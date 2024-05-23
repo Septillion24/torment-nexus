@@ -2,3 +2,4 @@ ember2018/
 actual_malware/postgresql-16.2-1-windows-x64.exe
 postgresql-16.2-1-windows-x64.exe
 binaries/*
+temp/
