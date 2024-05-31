@@ -137,6 +137,10 @@ def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_parti
     binary_name = binary_location.rsplit('/', 1)[-1].split('.', 1)[0]
     binary.write(f"{output_dir}/{binary_name}-optimized.exe")
     
+    output_df = pd.concat((df,bestpositiondf))
+    output_df.columns = get_feature_names()
+    output_df.to_csv(f"{output_dir}/{binary_name}-optimized.csv")
+    
     return f"Optimization score change:\n   {original_score} -> {objective_function(global_best_position)}"
     
     
