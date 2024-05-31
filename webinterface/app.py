@@ -28,6 +28,7 @@ def evaluate_file(binary_location, max_display, data_dir):
 
 
 def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_particles:int, num_iterations:int, cognitive_component:float, social_component:float, weight:float,):
+   
     def objective_function(df):
         if type(df) is pd.DataFrame:
             df = df.to_numpy()
@@ -45,6 +46,8 @@ def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_parti
         file_data = open(binary_location, "rb").read()
         return extractor2.feature_vector(file_data)
 
+    original_score = objective_function(get_vectors(binary_location))
+
     df = get_dataframe(get_vectors(binary_location))
 
     dim = df.shape[1]
@@ -61,10 +64,6 @@ def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_parti
                 # "general.has_debug":(0,1),
                 }
 
-
-
-    
-    
     changeable_str = ["header.coff.timestamp",
                     "directories.certificate_table_size",
                     "directories.debug_vaddress",
@@ -121,9 +120,9 @@ def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_parti
     export_table_vaddress = bestpositiondf["directories.export_table_vaddress"]
     export_table_size = bestpositiondf["directories.export_table_size"]
     major_subsystem_version = round(bestpositiondf["header.optional.major_subsystem_version"])
-    has_tls = round(bestpositiondf["general.has_tls"])
-    has_signatures = round(bestpositiondf["general.has_signature"])
-    has_debug = round(bestpositiondf["general.has_debug"])
+    # has_tls = round(bestpositiondf["general.has_tls"])
+    # has_signatures = round(bestpositiondf["general.has_signature"])
+    # has_debug = round(bestpositiondf["general.has_debug"])
     binary.header.time_date_stamps = timestamp
     data_directory[4].rva = certificate_table_vaddress
     data_directory[4].size = certificate_table_size
@@ -135,7 +134,10 @@ def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_parti
     # binary.has_debug = has_debug
     binary.optional_header.major_subsystem_version = major_subsystem_version
 
-    binary.write(f"{output_dir}/edited.exe")
+    binary_name = binary_location.rsplit('/', 1)[-1].split('.', 1)[0]
+    binary.write(f"{output_dir}/{binary_name}-optimized.exe")
+    
+    return f"Optimization score change:\n   {original_score} -> {objective_function(global_best_position)}"
     
     
 
@@ -145,7 +147,7 @@ def classify_binary(binary_location:str, data_dir) -> float:
 
     file_data = open(binary_location, "rb").read()
     feature_vector = extractor2.feature_vector(file_data)
-    return lgbm_model.predict([np.array(feature_vector, dtype=np.float32)])[0]
+    return float(lgbm_model.predict([np.array(feature_vector, dtype=np.float32)])[0])
 
 def main():
     data_dir = "/workspaces/torment-nexus/ember2018/"
@@ -153,7 +155,9 @@ def main():
     with gr.Blocks() as demo:
         binary_location = gr.File(label="Upload your file")
         max_display = gr.Slider(value=10, minimum=0, maximum=50, step=1, label="Max display")
+        submit_button_number = gr.Button("Classify")
         submit_button = gr.Button("Evaluate")
+        output_number = gr.Number(label="Prediction")
         output = gr.Image(label="Summary plot", width="100%", show_share_button=True)
         num_particles = gr.Slider(value=20, minimum=0, maximum=50, step=1, label="Number of particles")
         num_iterations = gr.Slider(value=5, minimum=0, maximum=50, step=1, label="Number of iterations")
@@ -161,8 +165,10 @@ def main():
         social_component = gr.Number(value=1.2, minimum=0, maximum=2, label="Social component")
         weight = gr.Number(value=0.8, minimum=0, maximum=2, label="Weight")
         optimize_button = gr.Button("Optimize")
+        optimize_text = gr.Textbox(label="Output")
+        submit_button_number.click(fn=classify_binary, inputs=[binary_location, gr.State(data_dir)], outputs=output_number)
         submit_button.click(fn=evaluate_file, inputs=[binary_location, max_display, gr.State(data_dir)], outputs=output)
-        optimize_button.click(fn=optimize_binary, inputs=[binary_location, gr.State(data_dir), gr.State(output_dir),num_particles, num_iterations, cognitive_component, social_component, weight])
+        optimize_button.click(fn=optimize_binary, inputs=[binary_location, gr.State(data_dir), gr.State(output_dir),num_particles, num_iterations, cognitive_component, social_component, weight], outputs=optimize_text)
 
     demo.launch()
 
