@@ -9,6 +9,12 @@ import gradio as gr
 import lightgbm as lgb
 import matplotlib.pyplot as plt
 from features import get_feature_names
+import subprocess
+
+settings = {
+    "data_dir": "/workspaces/torment-nexus/ember2018/",
+    "output_dir": "/workspaces/torment-nexus/binaries/outputs"
+}
 
 def evaluate_file(binary_location, max_display, data_dir):
     lgbm_model = lgb.Booster(model_file=os.path.join(data_dir, "ember_model_2018.txt"))
@@ -27,8 +33,9 @@ def evaluate_file(binary_location, max_display, data_dir):
 
 
 
-def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_particles:int, num_iterations:int, cognitive_component:float, social_component:float, weight:float,):
-   
+def optimize_binary(binary_location:str, num_particles:int, num_iterations:int, cognitive_component:float, social_component:float, weight:float,):
+    data_dir = settings["data_dir"]
+    output_dir = settings["output_dir"]
     def objective_function(df):
         if type(df) is pd.DataFrame:
             df = df.to_numpy()
@@ -143,9 +150,22 @@ def optimize_binary(binary_location:str, data_dir:str, output_dir:str, num_parti
     
     return f"Optimization score change:\n   {original_score} -> {objective_function(global_best_position)}"
     
+def upx_pack(binary_location:str):
+    output_dir = settings["output_dir"]
+    upx_command = ["upx", "--force", binary_location]
+    binary_name = binary_location.rsplit('/', 1)[-1].split('.', 1)[0]
+    output_dir = f"{output_dir}/{binary_name}-upx.exe"
+    if output_dir:
+        upx_command += ["-o", output_dir]
     
+    try:
+        subprocess.run(upx_command, check=True)
+        print(f"Successfully compressed {binary_location}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during UPX compression: {e}")
 
-def classify_binary(binary_location:str, data_dir) -> float:
+def classify_binary(binary_location:str) -> float:
+    data_dir = settings["data_dir"]
     lgbm_model = lgb.Booster(model_file=os.path.join(data_dir, "ember_model_2018.txt"))
     extractor2 = ember.PEFeatureExtractor(2)
 
@@ -153,27 +173,51 @@ def classify_binary(binary_location:str, data_dir) -> float:
     feature_vector = extractor2.feature_vector(file_data)
     return float(lgbm_model.predict([np.array(feature_vector, dtype=np.float32)])[0])
 
-def main():
-    data_dir = "/workspaces/torment-nexus/ember2018/"
-    output_dir = "/workspaces/torment-nexus/binaries/outputs"
-    with gr.Blocks() as demo:
-        binary_location = gr.File(label="Upload your file")
-        max_display = gr.Slider(value=10, minimum=0, maximum=50, step=1, label="Max display")
-        submit_button_number = gr.Button("Classify")
-        submit_button = gr.Button("Evaluate")
-        output_number = gr.Number(label="Prediction")
-        output = gr.Image(label="Summary plot", width="100%", show_share_button=True)
-        num_particles = gr.Slider(value=20, minimum=0, maximum=50, step=1, label="Number of particles")
-        num_iterations = gr.Slider(value=5, minimum=0, maximum=50, step=1, label="Number of iterations")
-        cognitive_component = gr.Number(value=1.2, minimum=0, maximum=2, label="Cognitive component")
-        social_component = gr.Number(value=1.2, minimum=0, maximum=2, label="Social component")
-        weight = gr.Number(value=0.8, minimum=0, maximum=2, label="Weight")
-        optimize_button = gr.Button("Optimize")
-        optimize_text = gr.Textbox(label="Output")
-        submit_button_number.click(fn=classify_binary, inputs=[binary_location, gr.State(data_dir)], outputs=output_number)
-        submit_button.click(fn=evaluate_file, inputs=[binary_location, max_display, gr.State(data_dir)], outputs=output)
-        optimize_button.click(fn=optimize_binary, inputs=[binary_location, gr.State(data_dir), gr.State(output_dir),num_particles, num_iterations, cognitive_component, social_component, weight], outputs=optimize_text)
+def save_settings(data_dir:str, output_dir:str):
+    global settings
+    settings["data_dir"] = data_dir
+    settings["output_dir"] = output_dir
+    
+    return "Settings saved."
 
+def main():
+
+    with gr.Blocks() as demo:
+        
+        with gr.Tab("Main") as main_page:
+            binary_location = gr.File(label="Upload your file")
+            with gr.Tab("Classify") as classify_page:
+                submit_button_number = gr.Button("Classify")
+                output_number = gr.Number(label="Prediction")      
+            with gr.Tab("Evaluate") as evaluate_page:
+                max_display = gr.Slider(value=10, minimum=0, maximum=50, step=1, label="Max display")
+                submit_button = gr.Button("Evaluate")
+                output = gr.Image(label="Summary plot", width="100%", show_share_button=True)
+            with gr.Tab("Optimize") as optimize_page:
+                num_particles = gr.Slider(value=20, minimum=0, maximum=50, step=1, label="Number of particles")
+                num_iterations = gr.Slider(value=5, minimum=0, maximum=50, step=1, label="Number of iterations")
+                cognitive_component = gr.Number(value=1.2, minimum=0, maximum=2, label="Cognitive component")
+                social_component = gr.Number(value=1.2, minimum=0, maximum=2, label="Social component")
+                weight = gr.Number(value=0.8, minimum=0, maximum=2, label="Weight")
+                optimize_button = gr.Button("Optimize")
+                optimize_text = gr.Textbox(label="Output")
+                upx_button = gr.Button("UPX Pack")
+            submit_button_number.click(fn=classify_binary, inputs=[binary_location], outputs=output_number)
+            submit_button.click(fn=evaluate_file, inputs=[binary_location, max_display], outputs=output)
+            optimize_button.click(fn=optimize_binary, inputs=[binary_location,num_particles, num_iterations, cognitive_component, social_component, weight], outputs=optimize_text)
+            upx_button.click(fn=upx_pack, inputs=[binary_location])
+  
+        with gr.Tab("Settings") as settings_page:
+            test = gr.Textbox(label="Settings")
+            data_dir = gr.Text(value=settings["data_dir"], label="Data directory")
+            output_dir = gr.Text(value=settings["output_dir"], label="Output directory")
+            save_button = gr.Button("Save")
+            
+            save_button.click(save_settings, inputs=[data_dir,output_dir])
+        
+            
+            
+            
     demo.launch()
 
 if __name__ == "__main__":
