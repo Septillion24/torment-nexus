@@ -17,7 +17,7 @@ settings = {
 }
 
 def evaluate_file(binary_location, max_display, data_dir):
-    lgbm_model = lgb.Booster(model_file=os.path.join(data_dir, "ember_model_2018.txt"))
+    lgbm_model = lgb.Booster(model_file=os.path.join(settings["data_dir"], "ember_model_2018.txt"))
     lgbm_model.params['objective'] = 'regression'
     extractor2 = ember.PEFeatureExtractor(2)
     file_data = open(binary_location, "rb").read()
@@ -30,8 +30,6 @@ def evaluate_file(binary_location, max_display, data_dir):
     plt.savefig('/tmp/shap_plot.png', bbox_inches='tight')
     plt.close()
     return '/tmp/shap_plot.png'
-
-
 
 def optimize_binary(binary_location:str, num_particles:int, num_iterations:int, cognitive_component:float, social_component:float, weight:float,):
     data_dir = settings["data_dir"]
@@ -186,8 +184,8 @@ def main():
         
         with gr.Tab("Main") as main_page:
             binary_location = gr.File(label="Upload your file")
-            with gr.Tab("Classify") as classify_page:
-                submit_button_number = gr.Button("Classify")
+            with gr.Tab("Predict") as predict_page:
+                submit_button_number = gr.Button("Predict")
                 output_number = gr.Number(label="Prediction")      
             with gr.Tab("Evaluate") as evaluate_page:
                 max_display = gr.Slider(value=10, minimum=0, maximum=50, step=1, label="Max display")
@@ -215,8 +213,6 @@ def main():
             
             save_button.click(save_settings, inputs=[data_dir,output_dir])
         
-            
-            
             
     demo.launch()
 
