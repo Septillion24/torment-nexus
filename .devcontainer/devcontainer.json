@@ -9,7 +9,7 @@
 		"dockerfile": "../Dockerfile"
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/conda:1": {},
+		"ghcr.io/devcontainers/features/conda:2": {},
 		"ghcr.io/devcontainers/features/python:1": {}
 	}
 
